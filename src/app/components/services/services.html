@@ -1,0 +1,42 @@
+<section id="services" class="py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="section-title"
+          [class]="theme.isDark() ? 'text-white' : 'text-gray-900'">
+        {{ translation.t('services.title') }}
+      </h2>
+      <p class="section-subtitle">
+        {{ translation.t('services.subtitle') }}
+      </p>
+    </div>
+
+    <!-- Service Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      @for (service of services; track service.title; let i = $index) {
+        <div class="card group cursor-pointer"
+             [class]="theme.isDark() ? 'card-dark hover:border-primary/50' : 'card-light hover:border-primary/30'">
+          <!-- Icon -->
+          <div class="w-14 h-14 rounded-xl flex items-center justify-center mb-5 transition-colors duration-300"
+               [class]="theme.isDark()
+                 ? 'bg-primary/10 text-primary group-hover:bg-primary group-hover:text-white'
+                 : 'bg-primary/5 text-primary group-hover:bg-primary group-hover:text-white'">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" [attr.d]="getIcon(service.icon)"/>
+            </svg>
+          </div>
+
+          <!-- Content -->
+          <h3 class="text-xl font-bold mb-3"
+              [class]="theme.isDark() ? 'text-white' : 'text-gray-900'">
+            {{ service.title }}
+          </h3>
+          <p class="text-sm leading-relaxed"
+             [class]="theme.isDark() ? 'text-gray-400' : 'text-gray-600'">
+            {{ service.description }}
+          </p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

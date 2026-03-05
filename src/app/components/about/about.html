@@ -1,0 +1,95 @@
+<section id="about" class="py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="section-title"
+          [class]="theme.isDark() ? 'text-white' : 'text-gray-900'">
+        {{ translation.t('about.title') }}
+      </h2>
+      <p class="section-subtitle">
+        {{ translation.t('about.subtitle') }}
+      </p>
+    </div>
+
+    <!-- Mission & Vision -->
+    <div class="grid md:grid-cols-2 gap-6 mb-16">
+      <!-- Mission -->
+      <div class="card"
+           [class]="theme.isDark() ? 'card-dark' : 'card-light'">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-primary/10 text-primary">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 21v-4m0 0V5a2 2 0 012-2h6.5l1 1H21l-3 6 3 6h-8.5l-1-1H5a2 2 0 00-2 2zm9-13.5V9"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-3"
+            [class]="theme.isDark() ? 'text-white' : 'text-gray-900'">
+          {{ translation.t('about.mission.title') }}
+        </h3>
+        <p [class]="theme.isDark() ? 'text-gray-400' : 'text-gray-600'">
+          {{ translation.t('about.mission.description') }}
+        </p>
+      </div>
+
+      <!-- Vision -->
+      <div class="card"
+           [class]="theme.isDark() ? 'card-dark' : 'card-light'">
+        <div class="w-12 h-12 rounded-xl flex items-center justify-center mb-4 bg-accent/10 text-accent">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold mb-3"
+            [class]="theme.isDark() ? 'text-white' : 'text-gray-900'">
+          {{ translation.t('about.vision.title') }}
+        </h3>
+        <p [class]="theme.isDark() ? 'text-gray-400' : 'text-gray-600'">
+          {{ translation.t('about.vision.description') }}
+        </p>
+      </div>
+    </div>
+
+    <!-- Team Section -->
+    <div class="mb-16">
+      <h3 class="text-2xl font-bold text-center mb-10"
+          [class]="theme.isDark() ? 'text-white' : 'text-gray-900'">
+        {{ translation.t('about.team.title') }}
+      </h3>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        @for (member of teamMembers; track member.name) {
+          <div class="text-center group">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-2xl bg-gradient-to-br from-primary to-accent flex items-center justify-center text-white text-2xl font-bold group-hover:scale-105 transition-transform duration-300">
+              {{ member.avatar }}
+            </div>
+            <h4 class="font-bold"
+                [class]="theme.isDark() ? 'text-white' : 'text-gray-900'">
+              {{ member.name }}
+            </h4>
+            <p class="text-sm"
+               [class]="theme.isDark() ? 'text-gray-400' : 'text-gray-500'">
+              {{ member.role }}
+            </p>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Technologies -->
+    <div>
+      <h3 class="text-2xl font-bold text-center mb-10"
+          [class]="theme.isDark() ? 'text-white' : 'text-gray-900'">
+        {{ translation.t('about.technologies.title') }}
+      </h3>
+      <div class="flex flex-wrap justify-center gap-3">
+        @for (tech of technologies; track tech) {
+          <span class="px-4 py-2 rounded-xl text-sm font-medium transition-colors duration-200"
+                [class]="theme.isDark()
+                  ? 'bg-dark-surface border border-dark-card text-gray-300 hover:border-primary/50 hover:text-primary'
+                  : 'bg-gray-50 border border-gray-200 text-gray-700 hover:border-primary/30 hover:text-primary'">
+            {{ tech }}
+          </span>
+        }
+      </div>
+    </div>
+  </div>
+</section>

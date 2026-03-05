@@ -1,0 +1,47 @@
+<section id="portfolio" class="py-20 md:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="section-title"
+          [class]="theme.isDark() ? 'text-white' : 'text-gray-900'">
+        {{ translation.t('portfolio.title') }}
+      </h2>
+      <p class="section-subtitle">
+        {{ translation.t('portfolio.subtitle') }}
+      </p>
+    </div>
+
+    <!-- Portfolio Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      @for (project of projects; track project.title; let i = $index) {
+        <div class="card group overflow-hidden"
+             [class]="theme.isDark() ? 'card-dark hover:border-primary/50' : 'card-light hover:border-primary/30'">
+          <!-- Project Image Placeholder -->
+          <div class="relative h-48 rounded-xl mb-4 overflow-hidden bg-gradient-to-br flex items-center justify-center"
+               [class]="getGradient(i)">
+            <div class="text-white/80">
+              <svg class="w-16 h-16 opacity-50 group-hover:opacity-80 transition-opacity duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1"
+                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+              </svg>
+            </div>
+            <!-- Category Badge -->
+            <span class="absolute top-3 start-3 px-3 py-1 text-xs font-semibold rounded-full bg-white/20 backdrop-blur-sm text-white">
+              {{ project.category }}
+            </span>
+          </div>
+
+          <!-- Content -->
+          <h3 class="text-lg font-bold mb-2"
+              [class]="theme.isDark() ? 'text-white' : 'text-gray-900'">
+            {{ project.title }}
+          </h3>
+          <p class="text-sm"
+             [class]="theme.isDark() ? 'text-gray-400' : 'text-gray-600'">
+            {{ project.description }}
+          </p>
+        </div>
+      }
+    </div>
+  </div>
+</section>

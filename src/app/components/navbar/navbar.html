@@ -1,0 +1,96 @@
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+     [class]="theme.isDark() ? 'bg-dark-bg/90 backdrop-blur-md border-b border-dark-card' : 'bg-light-bg/90 backdrop-blur-md border-b border-gray-200'">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a routerLink="/home" class="flex items-center gap-2 flex-shrink-0">
+        <img src="logo.svg" alt="SoftPro" class="h-10 w-auto">
+      </a>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center gap-1">
+        @for (link of navLinks; track link.section) {
+          <button (click)="scrollToSection(link.section)"
+             class="px-3 py-2 rounded-lg text-sm font-medium transition-colors duration-200 cursor-pointer"
+             [class]="activeSection() === link.section
+               ? 'text-primary font-semibold'
+               : (theme.isDark() ? 'text-gray-300 hover:text-white hover:bg-dark-card' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100')">
+            {{ link.label }}
+          </button>
+        }
+      </div>
+
+      <!-- Actions -->
+      <div class="flex items-center gap-2">
+        <!-- Language Toggle -->
+        <button (click)="translation.toggleLanguage()"
+                class="p-2 rounded-lg text-sm font-medium transition-colors duration-200"
+                [class]="theme.isDark() ? 'text-gray-300 hover:text-white hover:bg-dark-card' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'"
+                [attr.aria-label]="'Switch language'">
+          {{ translation.lang() === 'en' ? 'AR' : 'EN' }}
+        </button>
+
+        <!-- Theme Toggle -->
+        <button (click)="theme.toggleTheme()"
+                class="p-2 rounded-lg transition-colors duration-200"
+                [class]="theme.isDark() ? 'text-gray-300 hover:text-white hover:bg-dark-card' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'"
+                [attr.aria-label]="'Toggle theme'">
+          @if (theme.isDark()) {
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/>
+            </svg>
+          } @else {
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+            </svg>
+          }
+        </button>
+
+        <!-- CTA Button (Desktop) -->
+        <button (click)="scrollToSection('contact')" class="hidden md:inline-flex btn-primary text-sm !px-4 !py-2 cursor-pointer">
+          {{ translation.t('nav.getStarted') }}
+        </button>
+
+        <!-- Mobile Menu Button -->
+        <button (click)="toggleMobileMenu()"
+                class="md:hidden p-2 rounded-lg transition-colors duration-200"
+                [class]="theme.isDark() ? 'text-gray-300 hover:text-white hover:bg-dark-card' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100'"
+                [attr.aria-label]="'Toggle menu'">
+          @if (mobileMenuOpen()) {
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          } @else {
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+          }
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  @if (mobileMenuOpen()) {
+    <div class="md:hidden border-t transition-all duration-300"
+         [class]="theme.isDark() ? 'bg-dark-bg border-dark-card' : 'bg-light-bg border-gray-200'">
+      <div class="px-4 py-3 space-y-1">
+        @for (link of navLinks; track link.section) {
+          <button (click)="scrollToSection(link.section)"
+             class="block w-full text-start px-3 py-2 rounded-lg text-base font-medium transition-colors duration-200 cursor-pointer"
+             [class]="activeSection() === link.section
+               ? 'text-primary font-semibold'
+               : (theme.isDark() ? 'text-gray-300 hover:text-white hover:bg-dark-card' : 'text-gray-600 hover:text-gray-900 hover:bg-gray-100')">
+            {{ link.label }}
+          </button>
+        }
+        <button (click)="scrollToSection('contact')"
+           class="block w-full btn-primary text-center mt-3 cursor-pointer">
+          {{ translation.t('nav.getStarted') }}
+        </button>
+      </div>
+    </div>
+  }
+</nav>

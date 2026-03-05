@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #2563EB;
+  --color-primary-light: #3B82F6;
+  --color-primary-dark: #1D4ED8;
+  --color-secondary: #06B6D4;
+  --color-secondary-light: #22D3EE;
+  --color-secondary-dark: #0891B2;
+  --color-accent: #8B5CF6;
+  --color-accent-light: #A78BFA;
+  --color-accent-dark: #7C3AED;
+  --color-dark-bg: #0F172A;
+  --color-dark-surface: #1E293B;
+  --color-dark-card: #334155;
+  --color-light-bg: #F8FAFC;
+  --color-light-surface: #FFFFFF;
+  --color-light-card: #F1F5F9;
+  --color-text-light: #F8FAFC;
+  --color-text-dark: #0F172A;
+  --color-text-muted: #94A3B8;
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .dark body,
+  body.dark {
+    background-color: var(--color-dark-bg);
+    color: var(--color-text-light);
+  }
+
+  .light body,
+  body.light {
+    background-color: var(--color-light-bg);
+    color: var(--color-text-dark);
+  }
+
+  [dir="rtl"] {
+    text-align: right;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold text-white bg-primary hover:bg-primary-dark transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold border-2 border-primary text-primary hover:bg-primary hover:text-white transition-all duration-300;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-text-muted max-w-2xl mx-auto;
+  }
+
+  .card {
+    @apply rounded-2xl p-6 transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+  }
+
+  .card-dark {
+    @apply bg-dark-surface border border-dark-card;
+  }
+
+  .card-light {
+    @apply bg-light-surface border border-gray-200 shadow-md;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-primary via-secondary to-accent bg-clip-text text-transparent;
+  }
+}
+
+@utility animate-fade-in {
+  animation: fadeIn 0.6s ease-out forwards;
+}
+
+@utility animate-slide-up {
+  animation: slideUp 0.6s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

@@ -1,0 +1,57 @@
+<section id="home" class="relative min-h-screen flex items-center pt-16 overflow-hidden">
+  <!-- Background Effects -->
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-1/4 start-1/4 w-72 h-72 bg-primary/20 rounded-full blur-3xl"></div>
+    <div class="absolute bottom-1/4 end-1/4 w-72 h-72 bg-secondary/20 rounded-full blur-3xl"></div>
+    <div class="absolute top-1/2 start-1/2 w-96 h-96 bg-accent/10 rounded-full blur-3xl"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="text-center max-w-4xl mx-auto">
+      <!-- Tagline -->
+      <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8 animate-fade-in"
+           [class]="theme.isDark() ? 'bg-primary/10 border border-primary/20' : 'bg-primary/5 border border-primary/10'">
+        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+        <span class="text-sm font-medium text-primary">{{ translation.t('hero.tagline') }}</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight mb-6 animate-slide-up"
+          [class]="theme.isDark() ? 'text-white' : 'text-gray-900'">
+        {{ translation.t('hero.title') }}
+        <br>
+        <span class="gradient-text">{{ translation.t('hero.titleHighlight') }}</span>
+      </h1>
+
+      <!-- Description -->
+      <p class="text-lg md:text-xl mb-10 max-w-2xl mx-auto animate-fade-in"
+         [class]="theme.isDark() ? 'text-gray-400' : 'text-gray-600'">
+        {{ translation.t('hero.description') }}
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 animate-fade-in">
+        <a routerLink="/contact" class="btn-primary text-lg px-8 py-4">
+          {{ translation.t('hero.cta') }}
+        </a>
+        <a routerLink="/services" class="btn-secondary text-lg px-8 py-4"
+           [class]="theme.isDark() ? '' : '!border-gray-300 !text-gray-700 hover:!bg-gray-100 hover:!text-gray-900'">
+          {{ translation.t('hero.ctaSecondary') }}
+        </a>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 max-w-3xl mx-auto animate-slide-up">
+        @for (stat of stats; track stat.key) {
+          <div class="text-center">
+            <div class="text-3xl md:text-4xl font-bold gradient-text mb-1">{{ stat.value }}</div>
+            <div class="text-sm"
+                 [class]="theme.isDark() ? 'text-gray-400' : 'text-gray-500'">
+              {{ translation.t('hero.stats.' + stat.key) }}
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
